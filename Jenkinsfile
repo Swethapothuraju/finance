@@ -7,23 +7,24 @@ pipeline{
                  echo 'github url checkout'
             }
         }
-        stage('codecompile with akshat'){
+        stage('codecompilet'){
             steps{
                 echo 'starting compiling'
                 sh 'mvn compile'
             }
         }
-        stage('codetesting with akshat'){
+        stage('code testing'){
             steps{
-                sh 'mvn test'
+               echo 'Running unit tests with Maven'
+               sh 'mvn -B -V test -Dmaven.test.failure.ignore=false'
             }
         }
-        stage('qa with akshat'){
+        stage('qa'){
             steps{
                 sh 'mvn checkstyle:checkstyle'
             }
         }
-        stage('package with akshat'){
+        stage('package'){
             steps{
                 sh 'mvn package'
             }
